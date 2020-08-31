@@ -1,0 +1,46 @@
+# DataSource Config
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://119.23.231.187:3306/vueblog?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    username: root
+    password: Ryanmoon@pass
+    # 鲁德伊数据源
+    type: com.alibaba.druid.pool.DruidDataSource
+    initialization-mode: always
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    #   配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+    filters: stat,slf4j,wall
+    maxPoolPreparedStatementPerConnectionSize: 20
+    useGlobalDataSourceStat: true
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+  redis:
+    host: 119.23.231.187
+    port: 6379
+    timeout: 10000
+  resources:
+    static-locations: classpath:/META-INF/resources/,classpath:/resources/,
+classpath: /static/,classpath:/public/,file:static/
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**Mapper.xml
+#  configuration:
+#    use-actual-param-name: true
+#logging:
+#  level:
+#    com:
+#      cui:
+#        gc:
+#          mw:
+server:
+  port: 8081
+#            mapper: debug
